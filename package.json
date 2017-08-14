@@ -24,6 +24,7 @@
     "test": "test"
   },
   "scripts": {
+    "install": "webpack",
     "start": "webpack-dev-server"
   },
   "repository": {
