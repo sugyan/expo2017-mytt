@@ -46,8 +46,7 @@ class Result extends React.Component {
             this.props.history.push('/tt/' + json.key);
             const url = 'https://twitter.com/intent/tweet?hashtags=アットジャム_MyTT'
               + '&text=' + encodeURIComponent(`俺のタイテ ${json.url}`)
-              + '&url=' + encodeURIComponent(window.location.href)
-              + '&hashtags=TIF2017_MyTT';
+              + '&url=' + encodeURIComponent(window.location.href);
             this.setState({ url: url });
         });
     }
