@@ -67,6 +67,8 @@ const filter = combineReducers({
         'kiwi':       true,
         'peach':      true,
         'pinapple':   true,
+        'talk':       false,
+        'greeting':   false,
     }, action) => {
         switch(action.type) {
         case FILTER_TOGGLE_CHECKBOX:

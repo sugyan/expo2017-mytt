@@ -22,6 +22,8 @@ class Form extends React.Component {
             { label: 'キウイ',       key: 'kiwi'       },
             { label: 'ピーチ',       key: 'peach'      },
             { label: 'パイナップル', key: 'pinapple'   },
+            { label: 'トーク',       key: 'talk'       },
+            { label: 'ふれあい',     key: 'greeting'   },
         ];
     }
     render() {

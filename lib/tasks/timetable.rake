@@ -15,26 +15,45 @@ namespace :timetable do
           e['turns'].each do |turn|
             start_time = Time.zone.strptime("#{day} #{turn['start'].rjust(4, '0')}", '%Y-%m-%d %H%M')
             end_time   = Time.zone.strptime("#{day} #{turn['end'].rjust(4, '0')}",   '%Y-%m-%d %H%M')
-            artist = turn['lineup'].map { |l| l['name'] }.join('、')
             detail = turn['replacement']
-            results << {
-              id: turn['id'],
-              artist: artist,
-              detail: detail,
-              start: start_time,
-              end: end_time,
-              stage: stage,
-              color: color,
-              stage_key: {
-                'ストロベリーステージ' => 'strawberry',
-                'ブルーベリーステージ' => 'blueberry',
-                'オレンジステージ'     => 'orange',
-                'グレープステージ'     => 'grape',
-                'キウイステージ'       => 'kiwi',
-                'ピーチステージ'       => 'peach',
-                'パイナップルステージ' => 'pinapple'
-              }[stage]
-            }
+            stage_key = {
+              'ストロベリーステージ' => 'strawberry',
+              'ブルーベリーステージ' => 'blueberry',
+              'オレンジステージ'     => 'orange',
+              'グレープステージ'     => 'grape',
+              'キウイステージ'       => 'kiwi',
+              'ピーチステージ'       => 'peach',
+              'パイナップルステージ' => 'pinapple',
+              'トークステージ'       => 'talk',
+              'ふれあいエリアA'      => 'greeting',
+              'ふれあいエリアB'      => 'greeting'
+            }[stage]
+            if stage_key == 'greeting'
+              turn['lineup'].each do |item|
+                results << {
+                  id: "#{turn['id']}-#{item['id']}",
+                  artist: item['name'],
+                  detail: detail,
+                  start: start_time,
+                  end: end_time,
+                  stage: stage,
+                  color: color,
+                  stage_key: stage_key
+                }
+              end
+            else
+              artist = turn['lineup'].map { |l| l['name'] }.join('、')
+              results << {
+                id: turn['id'],
+                artist: artist,
+                detail: detail,
+                start: start_time,
+                end: end_time,
+                stage: stage,
+                color: color,
+                stage_key: stage_key
+              }
+            end
           end
         end
       end
