@@ -1,6 +1,6 @@
 namespace :timetable do
   task main: :environment do
-    return if Time.zone.now >= Time.zone.local(2017, 8, 28)
+    # abort if Time.zone.now >= Time.zone.local(2017, 8, 28)
 
     days = {
       Date.new(2017, 8, 26) => 'https://leadi.jp/json/14680.json',
